@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-strSource = "SampleData.csv"
+strSource = "GraphFromCSV_TestData.csv"
 pdData = pd.read_csv(strSource, sep=' ', header=None, names=['x', 'y'])
 
 pltFigure = plt.figure(dpi=600) # create figure & set DPI
