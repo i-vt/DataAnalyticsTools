@@ -1,0 +1,13 @@
+# Dev image: installs the package in editable mode + dev deps, runs tests.
+FROM python:3.12-slim
+
+ENV MPLBACKEND=Agg
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+WORKDIR /app
+COPY . .
+
+RUN pip install --no-cache-dir -e ".[dev]"
+
+CMD ["pytest", "--cov=data_analytics_tools", "--cov-report=term-missing", "-v"]

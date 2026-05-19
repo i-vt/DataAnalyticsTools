@@ -1,0 +1,20 @@
+services:
+  # Production image — run CLI commands
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/data
+    # Override CMD to run any dat sub-command, e.g.:
+    #   docker compose run app summary /data/my.csv
+    entrypoint: ["dat"]
+
+  # Dev/test runner
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+    command: ["pytest", "--cov=data_analytics_tools", "--cov-report=term-missing", "-v"]
